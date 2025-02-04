@@ -1,7 +1,18 @@
 import express from 'express';
+import morgan from 'morgan';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv'
+
+// Load environment variables
+dotenv.config();
 
 const app = express();
-const PORT = 3000;
+
+// Middleware to parse JSON
+app.use(express.json());
+
+// Middleware to log requests
+app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
     res.send("Hello World new");
