@@ -2,7 +2,10 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
+
 const NoteSchema = new Schema({
+    // user is used to create a relationship between a note and a user. The ObjectID will be used to identify
+    // the user that this note belongs to
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
