@@ -32,6 +32,16 @@ app.get('/', (req, res) => {
     res.send("Hello World new");
 });
 
+app.get('/error', (req, res, next) => {
+    next(new Error('BROKEN ROUTE'));
+});
+
+app.use((err, req, res, next) => {
+    console.error("Error has occured \n");
+    console.error(err.stack);
+    res.status(500).send("Something broke in the application!");
+});
+
 app.listen(PORT, () => {
     console.log(`App listening on http://localhost:${PORT}`)
 })
