@@ -1,4 +1,5 @@
 import express from 'express';
+import auth from '../middleware/auth.js';
 const router = express.Router();
 import {
     createNote,
@@ -9,18 +10,18 @@ import {
 } from '../controllers/noteController.js';
 
 // Route to create note
-router.post('/', createNote);
+router.post('/', auth, createNote);
 
 // Route to get all notes
-router.get('/', getNotes);
+router.get('/', auth, getNotes);
 
 // Route to get a note by ID
-router.get('/:id', getNoteById);
+router.get('/:id', auth, getNoteById);
 
 // Route to update a note by ID
-router.put('/:id', updateNote);
+router.put('/:id', auth, updateNote);
 
 // Route to delete a note by ID
-router.delete('/:id', deleteNote);
+router.delete('/:id', auth, deleteNote);
 
 export default router;

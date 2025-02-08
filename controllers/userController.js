@@ -29,10 +29,16 @@ const registerUser = async (req, res) => {
     await newUser.save();
     console.log(`New user saved: ${newUser}`);
 
+    const token = jwt.sign(
+        {user: {id: newUser._id} },
+        process.env.JWT_SECRET,
+        {expiresIn: '1h'}
+    );
+
     console.log(`Username: ${username}`);
     console.log(`Password: ${password}`);
     console.log("register new user controller");
-    res.status(201).json({message: `User with name ${username} created`});
+    res.status(201).json({token});
     }catch(error){
         console.log("Got en error trying to register a user");
         console.log(error.message);
@@ -47,7 +53,7 @@ const loginUser = async(req, res) => {
 
     try{
     // Checking if the user doesn't exist
-    const existingUser = await User.findOne(username);
+    const existingUser = await User.findOne({username});
     if(!existingUser){
         console.log(`Invalid credentials ${username}`);
         return res.status(400).json({message: "Invalid credentials"});
@@ -61,7 +67,7 @@ const loginUser = async(req, res) => {
     }
 
     const token = jwt.sign(
-        {userId: existingUser._id},
+        {user: {id: existingUser._id}},
         process.env.JWT_SECRET,
         {expiresIn: '1h'}
     );
@@ -74,8 +80,5 @@ const loginUser = async(req, res) => {
         res.status(500).json({message: "Server error"});
     }
 };
-
-// Logic for logging in a user
-//const loginUser = ();
 
 export {registerUser, loginUser};
