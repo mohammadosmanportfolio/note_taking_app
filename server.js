@@ -30,23 +30,10 @@ mongoose.connect(MONGO_URI, {
     console.log("Connected to MongoDB");
 }).catch((error) => {
     console.error("Error connecting to MongoDB: ", error);
+    process.exit(1);
 });
 
 const PORT = process.env.PORT || 3000;
-
-app.get('/', (req, res) => {
-    res.send("Hello World new");
-});
-
-app.get('/error', (req, res, next) => {
-    next(new Error('BROKEN ROUTE'));
-});
-
-app.use((err, req, res, next) => {
-    console.error("Error has occured \n");
-    console.error(err.stack);
-    res.status(500).send("Something broke in the application!");
-});
 
 app.listen(PORT, () => {
     console.log(`App listening on http://localhost:${PORT}`)

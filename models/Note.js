@@ -23,7 +23,7 @@ const NoteSchema = new Schema({
         type: Date,
         default: Date.now
       }
-});
+}, {collection: "Notes"});
 
 //const Note = mongoose.model('Note', NoteSchema);
 const Note = mongoose.model('Note', NoteSchema);

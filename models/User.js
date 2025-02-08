@@ -12,7 +12,7 @@ const UserSchema = new Schema({
         type: String,
         required: true
     }
-});
+}, {collection: "Users"});
 
 //const User = mongoose.model('User', UserSchema);
 const User = mongoose.model('User', UserSchema);
