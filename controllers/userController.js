@@ -1,4 +1,4 @@
-import {User} from '../models/User.js'
+import User from '../models/User.js'
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
@@ -12,6 +12,7 @@ const registerUser = async (req, res) => {
     const password = req.body["password"];
     console.log(`Registering user ${username}`);
     
+    try {
     const existingUser = await User.findOne(username);
     if (existingUser){
        return res.status(400).json({message: "User already exists"});
@@ -31,6 +32,11 @@ const registerUser = async (req, res) => {
     console.log(`Username: ${username}`);
     console.log(`Password: ${password}`);
     console.log("register new user controller");
+    }catch(error){
+        console.log("Got en error trying to register a user");
+        console.log(error.message);
+        res.status(500).send("server error");
+    }
 };
 
 const loginUser = async(req, res) => {
@@ -55,7 +61,7 @@ const loginUser = async(req, res) => {
 
     const token = jwt.sign(
         {userId: existingUser._id},
-        process.env.JWT_KEY,
+        process.env.JWT_SECRET,
         {expiresIn: '1h'}
     );
 

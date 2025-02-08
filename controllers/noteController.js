@@ -1,4 +1,4 @@
-import {Note} from '../models/Note.js'
+import Note from '../models/Note.js'
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
