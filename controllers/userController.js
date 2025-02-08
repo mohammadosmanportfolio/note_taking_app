@@ -13,7 +13,7 @@ const registerUser = async (req, res) => {
     console.log(`Registering user ${username}`);
     
     try {
-    const existingUser = await User.findOne(username);
+    const existingUser = await User.findOne({username});
     if (existingUser){
        return res.status(400).json({message: "User already exists"});
     }
@@ -32,6 +32,7 @@ const registerUser = async (req, res) => {
     console.log(`Username: ${username}`);
     console.log(`Password: ${password}`);
     console.log("register new user controller");
+    res.status(201).json({message: `User with name ${username} created`});
     }catch(error){
         console.log("Got en error trying to register a user");
         console.log(error.message);

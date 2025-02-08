@@ -16,6 +16,10 @@ app.use(express.json());
 // Middleware to log requests
 app.use(morgan('dev'));
 
+// Using user and note routes
+app.use('/api/users', userRoutes);
+app.use('/api/notes', noteRoutes)
+
 // Mongo URI for database connection
 const MONGO_URI = process.env.MONGO_URI;
 
@@ -37,10 +41,6 @@ app.get('/', (req, res) => {
 app.get('/error', (req, res, next) => {
     next(new Error('BROKEN ROUTE'));
 });
-
-// Using user and note routes
-app.use('/api/users', userRoutes);
-app.use('/api/notes', noteRoutes)
 
 app.use((err, req, res, next) => {
     console.error("Error has occured \n");
