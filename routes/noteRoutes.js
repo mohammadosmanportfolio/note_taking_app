@@ -6,7 +6,7 @@ import {
     getNoteById,
     updateNote,
     deleteNote
-} from '../controllers/noteController';
+} from '../controllers/noteController.js';
 
 // Route to create note
 router.post('/', createNote);

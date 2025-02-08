@@ -2,8 +2,8 @@ import express from 'express';
 import morgan from 'morgan';
 import mongoose, { mongo } from 'mongoose';
 import dotenv from 'dotenv';
-import userRoutes from './routes/userRoutes';
-import noteRoutes from './routes/noteRoutes';
+import userRoutes from './routes/userRoutes.js';
+import noteRoutes from './routes/noteRoutes.js';
 
 // Load environment variables
 dotenv.config();
