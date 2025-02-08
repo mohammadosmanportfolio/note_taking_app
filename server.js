@@ -1,7 +1,9 @@
 import express from 'express';
 import morgan from 'morgan';
 import mongoose, { mongo } from 'mongoose';
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
+import userRoutes from './routes/userRoutes';
+import noteRoutes from './routes/noteRoutes';
 
 // Load environment variables
 dotenv.config();
@@ -35,6 +37,10 @@ app.get('/', (req, res) => {
 app.get('/error', (req, res, next) => {
     next(new Error('BROKEN ROUTE'));
 });
+
+// Using user and note routes
+app.use('/api/users', userRoutes);
+app.use('/api/notes', noteRoutes)
 
 app.use((err, req, res, next) => {
     console.error("Error has occured \n");
