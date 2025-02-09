@@ -8,15 +8,42 @@
 </head>
 <body>
     <div id="app">
+        <!--This div will contain the login and register forms-->
         <div id="auth">
             <h2>Login</h2>
                 <form id="login-form">
                     <label for="login-username">Enter your username:</label><br>
                     <input type="text" id="login-username" name="login-username"><br>
                     <label for="login-password">Password:</label><br>
-                    <input type="text" id="login-password" name="login-password">
+                    <input type="password" id="login-password" name="login-password">
+                    <button type="submit">Login</button>
+                </form>
+            <h2>Register</h2>
+                <form id="register-form">
+                    <label for="register-username">Enter your username:</label><br>
+                    <input type="text" id="register-username" name="register-username"><br>
+                    <label for="register-password">Password:</label><br>
+                    <input type="password" id="register-password" name="register-password">
+                    <button type="submit">Register</button>
                 </form>
         </div>
+        <!--This div will be for the notes-->
+        <div id="notes" style="display: none;">
+            <h2>Notes</h2>
+            <button id="create-note">Create new note</button>
+            <ul id="note-list"></ul>
+        </div>
+        <!--This will be to create new notes-->
+        <div id="note-form" style="display:none;">
+            <h2>Create/Edit Note</h2>
+            <form id="note-form-element">
+                <input type="text" id="note-title" placeholder="Title" required><br>
+                <textarea id="note-content" placeholder="Content" required></textarea>
+                <button type="submit">Save Note</button>
+            </form>
+        </div>
+        </div>
     </div>
+    <script src="../js/script.js"></script>
 </body>
 </html>
