@@ -10,7 +10,6 @@ dotenv.config();
 const registerUser = async (req, res) => {
     const username = req.body["username"];
     const password = req.body["password"];
-    console.log(`Registering user ${username}`);
     
     try {
     const existingUser = await User.findOne({username});
@@ -27,7 +26,6 @@ const registerUser = async (req, res) => {
     });
 
     await newUser.save();
-    console.log(`New user saved: ${newUser}`);
 
     const token = jwt.sign(
         {user: {id: newUser._id} },
@@ -35,12 +33,8 @@ const registerUser = async (req, res) => {
         {expiresIn: '1h'}
     );
 
-    console.log(`Username: ${username}`);
-    console.log(`Password: ${password}`);
-    console.log("register new user controller");
     res.status(201).json({token});
     }catch(error){
-        console.log("Got en error trying to register a user");
         console.log(error.message);
         res.status(500).send("server error");
     }
@@ -49,7 +43,6 @@ const registerUser = async (req, res) => {
 const loginUser = async(req, res) => {
     const username = req.body["username"];
     const password = req.body["password"];
-    console.log("in login user controller");
 
     try{
     // Checking if the user doesn't exist
@@ -73,7 +66,6 @@ const loginUser = async(req, res) => {
     );
 
     // User has successfully logged in at this point
-    console.log(`User has successfully logged in ${username}`);
     res.status(200).json({token})
     }catch(error){
         console.log(`Error logging in user: ${error}`);

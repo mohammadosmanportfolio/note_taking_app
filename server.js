@@ -4,6 +4,7 @@ import mongoose, { mongo } from 'mongoose';
 import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes.js';
 import noteRoutes from './routes/noteRoutes.js';
+import cors from 'cors';
 
 // Load environment variables
 dotenv.config();
@@ -15,6 +16,9 @@ app.use(express.json());
 
 // Middleware to log requests
 app.use(morgan('dev'));
+
+//Enable CORS for all routes
+app.use(cors());
 
 // Using user and note routes
 app.use('/api/users', userRoutes);

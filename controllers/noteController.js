@@ -5,9 +5,6 @@ const createNote = async (req, res) => {
     const content = req.body['content'];
     const userId = req.user?.id;
 
-    console.log("Creating note for user...");
-    console.log(`In note Controller, userId at the start is ${userId}`);
-
     try {
         const newNote = new Note({
             user: userId,
