@@ -1,10 +1,4 @@
-Dependencies used in this project
--bcryptjs
--cors
--dotenv
--express
--jsonwebtoken
--mongoose
+Dependencies used in this project: bcryptjs, cors, dotenv, express, jsonwebtoken, mongoose.
 
 To run this app locally:
   1) Open your CLI and navigate to main directory of the project
